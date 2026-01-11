@@ -1,9 +1,12 @@
 #!/bin/bash
 
 # Friday AI Agent Launcher
-# MiniMax API Configuration
-export API_KEY="sk-cp-f2JJtFhEenf23Z95fSCpGtFipMJ7SG1sq5Pbb2McMmdhrqjbom8hYnAr4D9vz8Jb0A4LLMGX52vT8CVKZ7nYBl1kzxxufsXZMU0oxCDxAIcuJqCbq749FvU"
-export BASE_URL="https://api.minimax.io/v1"
+
+# Load environment variables if .env exists in the agent directory
+AGENT_DIR="/Users/mkazi/Downloads/Friday"
+if [ -f "$AGENT_DIR/.env" ]; then
+    export $(grep -v '^#' "$AGENT_DIR/.env" | xargs)
+fi
 
 # Run the Friday AI Agent
-python3 /Users/mkazi/Downloads/ai-coding-agent-main/main.py "$@"
+python3 "$AGENT_DIR/main.py" "$@"
